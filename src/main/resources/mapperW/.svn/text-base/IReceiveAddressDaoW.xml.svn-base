@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.IReceiveAddressDaoW">
+
+	<resultMap type="com.h2y.os.entity.ReceiveAddress" id="receiveaddressDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneId" column="zone_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneName" column="zone_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneDetail" column="zone_detail" javaType="string" jdbcType="VARCHAR" />
+		<result property="longitude" column="longitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="latitude" column="latitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="receiverName" column="receiver_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMobile" column="receiver_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverTelephone" column="receiver_telephone" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMail" column="receiver_mail" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="isDefault" column="is_default" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	
+	<resultMap type="java.util.Map" id="receiveaddressDaoListMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneId" column="zone_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneName" column="zone_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneDetail" column="zone_detail" javaType="string" jdbcType="VARCHAR" />
+		<result property="longitude" column="longitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="latitude" column="latitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="receiverName" column="receiver_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMobile" column="receiver_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverTelephone" column="receiver_telephone" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMail" column="receiver_mail" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="isDefault" column="is_default" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<insert id="add" parameterType="com.h2y.os.entity.ReceiveAddress">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_receive_address 
+		</selectKey>  
+		insert into tb_receive_address
+		(
+		member_id,
+		zone_id,
+		zone_code,
+		zone_name,
+		zone_detail,
+		longitude,
+		latitude,
+		receiver_name,
+		receiver_mobile,
+		receiver_telephone,
+		receiver_mail,
+		create_date,
+		update_date,
+		memo,
+		is_default,
+		status
+		)
+		values (
+		#{memberId,jdbcType=BIGINT},
+		#{zoneId,jdbcType=BIGINT},
+		#{zoneCode,jdbcType=VARCHAR},
+		#{zoneName,jdbcType=VARCHAR},
+		#{zoneDetail,jdbcType=VARCHAR},
+		#{longitude,jdbcType=DECIMAL},
+		#{latitude,jdbcType=DECIMAL},
+		#{receiverName,jdbcType=VARCHAR},
+		#{receiverMobile,jdbcType=VARCHAR},
+		#{receiverTelephone,jdbcType=VARCHAR},
+		#{receiverMail,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR},
+		#{isDefault,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.h2y.os.entity.ReceiveAddress">
+		update tb_receive_address
+		set
+		member_id = #{memberId,jdbcType=BIGINT},
+		zone_id = #{zoneId,jdbcType=BIGINT},
+		zone_code = #{zoneCode,jdbcType=VARCHAR},
+		zone_name = #{zoneName,jdbcType=VARCHAR},
+		zone_detail = #{zoneDetail,jdbcType=VARCHAR},
+		longitude = #{longitude,jdbcType=DECIMAL},
+		latitude = #{latitude,jdbcType=DECIMAL},
+		receiver_name = #{receiverName,jdbcType=VARCHAR},
+		receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+		receiver_telephone = #{receiverTelephone,jdbcType=VARCHAR},
+		receiver_mail = #{receiverMail,jdbcType=VARCHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date = #{updateDate,jdbcType=TIMESTAMP},
+		memo = #{memo,jdbcType=VARCHAR},
+		is_default = #{isDefault,jdbcType=INTEGER},
+		status = #{status,jdbcType=INTEGER}
+		where id = #{id}
+	</update>
+	
+	
+	<update id="updateUnDefaultByMemberId" parameterType="long">
+		update tb_receive_address
+		set
+		is_default = 0
+		where `status` = 0
+		and is_default = 1
+		and member_id = #{memberId}
+	</update>
+
+	<delete id="delete" parameterType="com.h2y.os.entity.ReceiveAddress">
+		delete from
+		tb_receive_address
+		where
+		id = #{id} 
+	</delete>
+
+	<delete id="deleteById" parameterType="long">
+		delete from
+		tb_receive_address
+		where
+		id = #{id} 
+	</delete>
+
+	
+
+</mapper>

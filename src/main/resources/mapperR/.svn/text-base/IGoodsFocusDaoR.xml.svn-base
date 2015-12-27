@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.IGoodsFocusDaoR">
+
+	<resultMap type="com.h2y.os.entity.GoodsFocus" id="goodsfocusDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsId" column="goods_id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsPriceId" column="goods_price_id" javaType="long" jdbcType="BIGINT" />
+		<result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT" />
+		<result property="focusDate" column="focus_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="goodsSource" column="goods_source" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsPriceVersion" column="goods_price_version" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsTypeId" column="goods_type_id" javaType="long" jdbcType="BIGINT" />
+		<result property="gdsCode" column="gds_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="shopId" column="shop_id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="focusType" column="focus_type" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	
+	<resultMap type="java.util.Map" id="goodsfocusMap">		
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsId" column="goods_id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsTypeId" column="goods_type_id" javaType="long" jdbcType="BIGINT" />
+		<result property="gdsCode" column="gds_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="gdsCode2" column="gds_code2" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNumber" column="goods_number" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsName" column="goods_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNickName" column="goods_nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="inventory" column="inventory" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsUnit" column="goods_unit" javaType="int" jdbcType="INTEGER" />
+		<result property="spec" column="spec" javaType="int" jdbcType="INTEGER" />
+		<result property="spellName" column="spell_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="firSpellName" column="fir_spell_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="maxPrice" column="max_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="minPrice" column="min_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="memberPrice" column="member_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="marketPrice" column="market_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="sellPrice" column="sell_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="version" column="version" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="shelvesDate" column="shelves_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="clickRate" column="click_rate" javaType="int" jdbcType="INTEGER" />
+		<result property="sellRate" column="sell_rate" javaType="int" jdbcType="INTEGER" />
+		<result property="markIds" column="mark_ids" javaType="string" jdbcType="VARCHAR" />
+		<result property="markInfoIds" column="mark_info_ids" javaType="string" jdbcType="VARCHAR" />
+		<result property="ord" column="ord" javaType="long" jdbcType="BIGINT" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="userId" column="user_id" javaType="long" jdbcType="BIGINT" />
+		<result property="sellUnit" column="sell_unit" javaType="long" jdbcType="BIGINT" />
+		<result property="isLimitSell" column="is_limit_sell" javaType="int" jdbcType="INTEGER" />
+		<result property="isAllowGrade" column="is_allow_grade" javaType="int" jdbcType="INTEGER" />
+		<result property="isGiftGrade" column="is_gift_grade" javaType="int" jdbcType="INTEGER" />
+		<result property="limitSellNumber" column="limit_sell_number" javaType="long" jdbcType="BIGINT" />
+		<result property="limitGradeNumber" column="limit_grade_number" javaType="double" jdbcType="DOUBLE" />
+		<result property="limitGiftNumber" column="limit_gift_number" javaType="long" jdbcType="BIGINT" />
+		<result property="isMallVisible" column="is_mall_visible" javaType="int" jdbcType="INTEGER" />
+		<result property="gdsQr1" column="gds_qr_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="gdsQrInside" column="gds_qr_inside" javaType="string" jdbcType="VARCHAR" />
+		<result property="sparePrice1" column="spare_price1" javaType="double" jdbcType="DOUBLE" />
+		<result property="sparePrice2" column="spare_price2" javaType="double" jdbcType="DOUBLE" />
+		<result property="markIds2" column="mark_ids2" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsSource" column="goods_source" javaType="int" jdbcType="INTEGER" />
+		<result property="addedDate" column="added_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="goodsVersion" column="goods_version" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsStatus" column="goods_status" javaType="int" jdbcType="INTEGER" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitType" column="unit_type" javaType="int" jdbcType="INTEGER" />
+		<result property="isActivity" column="is_activity" javaType="int" jdbcType="INTEGER" />
+		<result property="activityPrice" column="activity_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="activityGoodsId" column="activity_goods_id" javaType="long" jdbcType="BIGINT" />
+		<result property="activityType" column="activity_type" javaType="int" jdbcType="INTEGER" />
+		<result property="isGift" column="is_gift" javaType="int" jdbcType="INTEGER" />
+		<result property="isRelation" column="is_relation" javaType="int" jdbcType="INTEGER" />
+		<result property="weight" column="weight" javaType="long" jdbcType="BIGINT" />
+		<result property="isAd" column="is_ad" javaType="long" jdbcType="BIGINT" />
+		<result property="allowGradePrice" column="allow_grade_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="goodsEditStatus" column="goods_edit_status" javaType="int" jdbcType="INTEGER" />
+		<result property="fileDataId" column="file_data_id" javaType="long" jdbcType="BIGINT" />
+		<result property="img" column="img" javaType="string" jdbcType="VARCHAR" />
+		
+	</resultMap>
+	
+	
+
+	<select id="get" parameterType="long"
+		resultMap="goodsfocusDaoMap">
+		select * from tb_goods_focus where id = #{id}
+	</select>
+
+
+
+	<select id="getList" parameterType="hashmap"
+		resultMap="goodsfocusDaoMap">
+		select * from
+		tb_goods_focus
+		
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">			
+			<if test="goodsPriceId!= null">
+			and goods_price_id = #{goodsPriceId}
+			</if>
+			<if test="memberId!= null">
+			and member_id = #{memberId}
+			</if>			
+			<if test="shopId!= null">
+			and shop_id = #{shopId}
+			</if>
+			<if test="unitId!= null">
+			and unit_id = #{unitId}
+			</if>
+			<if test="focusType!= null">
+			and focus_type = #{focusType}
+			</if>
+			<if test="status!= null">
+			and status = #{status}
+			</if>
+		</trim>
+
+	</select>
+
+
+
+
+	<select id="getListPage" parameterType="hashmap" resultMap="goodsfocusMap">
+		select 
+			gp.id,
+			gp.goods_id,
+			gp.goods_number,
+			gp.goods_name,
+			gp.goods_nick_name,
+			gp.member_price,
+			gp.market_price,
+			gp.sell_price,
+			gp.version,
+			gp.`status`,
+			gp.is_activity,
+			gp.activity_price,
+			gp.is_gift,
+			gp.goods_edit_status,
+			
+			case when gp.is_activity = 1 THEN gp.activity_price ELSE gp.member_price END as singlePrice,
+			<!-- CONCAT('?bn=fileDataService&amp;id=',CAST(fd.id AS CHAR)) as img		-->
+			CONCAT('?bn=goodsLogoService&amp;gpId=',CAST(gp.id AS CHAR),'&amp;gpV=',CAST(gp.version AS CHAR)) as img
+		from tb_goods_price gp
+			JOIN tb_goods_focus f ON f.goods_price_id = gp.id 
+			
+			AND f.status = 0
+			
+
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				
+				<if test="focusId!= null">
+				and f.id = #{focusId}
+				</if>
+				
+				<if test="goodsId!= null">
+				and f.goods_id = #{goodsId}
+				</if>
+				<if test="goodsPriceId!= null">
+				and f.goods_price_id = #{goodsPriceId}
+				</if>
+				<if test="memberId!= null">
+				and f.member_id = #{memberId}
+				</if>				
+				<if test="goodsSource!= null">
+				and f.goods_source = #{goodsSource}
+				</if>				
+							
+				<if test="goodsTypeId!= null">
+				and f.goods_type_id = #{goodsTypeId}
+				</if>
+				
+				<if test="shopId!= null">
+				and f.shop_id = #{shopId}
+				</if>
+				<if test="unitId!= null">
+				and f.unit_id = #{unitId}
+				</if>
+				<if test="focusType!= null">
+				and f.focus_type = #{focusType}
+				</if>
+			</trim>
+		order by gp.ord desc,gp.create_date desc
+		limit ${(page-1)*pagesize},${pagesize}
+	</select>
+
+	<select id="getRows" parameterType="hashmap" resultType="long">
+		select
+		count(*) 
+		from tb_goods_focus f ,tb_goods_price g,tb_goods_type t
+
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				f.goods_price_id = g.id and f.goods_type_id = t.id
+				and  f.status = 0
+				<if test="focusid!= null">
+				and f.id = #{focusid}
+				</if>
+				<if test="zonecode!= null and zonecode!=''">
+				and f.zone_code = #{zonecode}
+				</if>
+				<if test="goodsid!= null">
+				and f.goods_id = #{goodsid}
+				</if>
+				<if test="goodspriceid!= null">
+				and f.goods_price_id = #{goodspriceid}
+				</if>
+				<if test="memberid!= null">
+				and f.member_id = #{memberid}
+				</if>				
+				<if test="goodssource!= null">
+				and f.goods_source = #{goodssource}
+				</if>				
+				<if test="goodspriceversion!= null">
+				and f.goods_price_version = #{goodspriceversion}
+				</if>				
+				<if test="goodstypeid!= null">
+				and f.goods_type_id = #{goodstypeid}
+				</if>
+				
+				<if test="shopid!= null">
+				and f.shop_id = #{shopid}
+				</if>
+				<if test="unitid!= null">
+				and f.unit_id = #{unitid}
+				</if>
+				<if test="focustype!= null">
+				and f.focus_type = #{focustype}
+				</if>
+			</trim>
+
+	</select>
+	
+	<select id="getMemberFocusGoodsRows" parameterType="hashmap" resultType="long">
+		select
+			count(f.id) 
+		from tb_goods_focus f 
+		where 
+			f.goods_price_id = #{goodsPriceId} 
+		and f.member_id = #{memberId}
+		and f.focus_type = 0
+		and f.status = 0
+	</select>
+	
+</mapper>

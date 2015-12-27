@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.IFindServiceDaoR">
+
+	
+	
+	<resultMap type="java.util.Map" id="findserviceDaoListMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="service_code" column="service_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="service_prefix" column="service_prefix" javaType="string" jdbcType="VARCHAR" />
+		<result property="parent_id" column="parent_id" javaType="long" jdbcType="BIGINT" />
+		<result property="name" column="name" javaType="string" jdbcType="VARCHAR" />
+		<result property="root_path" column="root_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="relative_path" column="relative_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="ios_file_name" column="ios_file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="android_file_name" column="android_file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="wechat_file_name" column="wechat_file_name" javaType="string" jdbcType="VARCHAR" />		
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="ord" column="ord" javaType="int" jdbcType="INTEGER" />
+		<result property="service_url" column="service_url" javaType="string" jdbcType="VARCHAR" />
+		<result property="click_event" column="click_event" javaType="int" jdbcType="INTEGER" />
+		<result property="url_params" column="url_params" javaType="string" jdbcType="VARCHAR" />
+		<result property="data_type" column="data_type" javaType="int" jdbcType="INTEGER" />
+		<result property="service_type" column="service_type" javaType="int" jdbcType="INTEGER" />
+		<result property="is_login" column="is_login" javaType="int" jdbcType="INTEGER" />
+		<result property="create_date" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="update_date" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="img" column="img" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<!-- 服务列表列 -->
+	<sql id="findServiceListColumn">
+			f.id,
+			f.service_code,
+			f.parent_id,
+			f.name,
+			f.root_path,
+			f.relative_path,
+			f.ios_file_name,
+			f.android_file_name,
+			f.wechat_file_name,
+			f.update_date,
+			f.status,
+			f.ord,
+			f.memo,
+			f.service_url,
+			f.click_event,
+			f.url_params,
+			f.is_login,
+			f.data_type,
+			CONCAT('?bn=findServiceDown&amp;os=${os}&amp;id=',CAST(f.id AS CHAR),'&amp;f=',DATE_FORMAT(f.update_date,'%Y%m%d%H%i%S')) as img
+	</sql>
+	
+	<!-- 获取公共发现服务列表 -->
+	<select id="getPublicServiceList2_1" parameterType="hashmap" resultMap="findserviceDaoListMap">
+		select * from (		
+			SELECT 
+			<include refid="findServiceListColumn"></include>
+			from tb_find_service f		
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				and f.status=0
+				and f.service_type = 0
+				and f.data_type = #{dataType}
+				and f.service_code = 'f_index_goods_type'
+			</trim>
+			order by  f.ord desc
+		) t1
+		union
+		select * from (
+			SELECT 
+			<include refid="findServiceListColumn"></include>
+			from tb_find_service f		
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				and f.status=0
+				and f.service_type = 0
+				and f.data_type = #{dataType}
+				and f.service_code &lt;&gt; 'f_index_goods_type'
+			</trim>
+			order by  f.ord desc
+			limit 2,6
+		) t2
+		
+		
+	</select>
+	
+	
+	<!-- 获取公共发现服务列表 适用于2.2以上版本 -->
+	<select id="getPublicServiceList2_2" parameterType="hashmap" resultMap="findserviceDaoListMap">
+			SELECT 
+			<include refid="findServiceListColumn"></include>
+			from tb_find_service f,tb_find_service_unit fu		
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				f.id=fu.service_id
+				and fu.zone_code = #{zoneCode}
+				and f.status=0
+				and f.service_type = 0
+				and f.data_type = #{dataType}
+			</trim>
+			order by  fu.ord desc
+	</select>
+	
+	
+	<!-- 获取公共发现服务列表 -->
+	<select id="getPublicServiceList" parameterType="hashmap" resultMap="findserviceDaoListMap">
+		SELECT 
+		<include refid="findServiceListColumn"></include>
+		from tb_find_service f		
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			and f.status=0
+			and f.service_type = 0
+			and f.data_type = #{dataType}
+			
+		</trim>
+		order by  f.ord desc
+		limit 0,10
+		
+	</select>
+	
+	<!-- 获取发现服务列表 -->
+	<select id="getPrivateServiceList" parameterType="hashmap" resultMap="findserviceDaoListMap">
+		SELECT 
+		<include refid="findServiceListColumn"></include>
+		from tb_find_service f
+		<choose>
+			<when test="dataType==0">
+				where f.status=0
+				and f.service_type = 1
+				and f.parent_id = #{parentId}
+				and f.data_type = 0
+			</when>
+			<otherwise>
+				,tb_find_service_unit t
+				where t.zone_code = #{zoneCode}
+				and f.id = t.service_id
+				and f.status=0
+				and f.service_type = 1
+				and f.parent_id = #{parentId}
+				and f.data_type=1
+			</otherwise>
+		</choose>
+		order by  f.ord desc
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,24 @@
+
+.prize_table{
+	 border-collapse:collapse; 
+	 margin: 0  auto;
+	 border:#D6DFF0 1px solid;
+ }
+ 
+.prize_td{ 
+	text-align:left;
+	background: none repeat scroll 0 0 #fff;
+	font:15px/30px verdana;
+    word-wrap:break-word; 
+	word-break:break-all;
+    padding: 4px 6px;	
+    border:#D6DFF0 1px solid;
+}
+
+.tanchu{ width:100%;z-index:2;height:100%; background:url(../imgs/wechatactivity/bg_tc.png) repeat; float:left;top:0;left:0px;position:fixed ; }
+
+.content_text_1{width:75%;margin:0 auto; margin-top:45%;border:#31B8D2 1px solid;border-radius:8px; background-color:#FFFFFF;}
+.content_text_1 img{ width:100%; height:35px;}
+.qiandao_illustrate_1{ padding-top:10px;font-size:14px;line-height:20px;padding-bottom:10px;text-align:center;}
+.submit_1{width:60%; height:38px;margin:0 auto;margin-top:15px;border:none;font-family:'微软雅黑';padding-top:6px;padding-bottom:4px;color:#fff;font-size:15px;font-weight:600;letter-spacing:2px;
+border-radius:6px;border: none;background:url(../imgs/wechatactivity/buttun.png) ;}

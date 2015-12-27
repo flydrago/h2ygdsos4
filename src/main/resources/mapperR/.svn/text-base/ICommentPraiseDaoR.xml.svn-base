@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.ICommentPraiseDaoR">
+
+	<resultMap type="com.h2y.os.entity.CommentPraise" id="commentpraiseDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="dataId" column="data_id" javaType="string" jdbcType="VARCHAR" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="nickName" column="nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="praiseType" column="praise_type" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+
+	<select id="get" parameterType="long"
+		resultMap="commentpraiseDaoMap">
+		select * from tb_comment_praise where id = #{id}
+	</select>
+
+	<select id="getByCommentIDAndAccount" parameterType="hashmap"
+		resultMap="commentpraiseDaoMap">
+		select * from tb_comment_praise where data_id = #{dataId} and account = #{account} and status = 0
+	</select>
+
+	<select id="getPraisedCommentID" parameterType="hashmap" resultType="string">
+		select data_id from tb_comment_praise where account = #{account} and status = 0 and data_id in 
+		<foreach collection="list" item="comment" open="(" separator="," close=")">
+			#{comment.id}
+		</foreach>
+	</select>
+
+	<select id="getList" parameterType="hashmap"
+		resultMap="commentpraiseDaoMap">
+		select * from
+		tb_comment_praise
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="id!= null">
+			and id = #{id}
+			</if>
+			<if test="dataId!= null and dataId!=''">
+			and data_id = #{dataId}
+			</if>
+			<if test="account!= null and account!=''">
+			and account = #{account}
+			</if>
+			<if test="nickName!= null and nickName!=''">
+			and nick_name = #{nickName}
+			</if>
+			<if test="praiseType!= null">
+			and praise_type = #{praiseType}
+			</if>
+			<if test="status!= null">
+			and status = #{status}
+			</if>
+			<if test="createDate!= null and createDate!=''">
+			and create_date = #{createDate}
+			</if>
+			<if test="updateDate!= null and updateDate!=''">
+			and update_date = #{updateDate}
+			</if>
+		</trim>
+
+	</select>
+
+
+
+
+	<select id="getListPage" parameterType="hashmap" resultMap="commentpraiseDaoMap">
+		select
+		*
+		from
+		tb_comment_praise
+		<if test="keyCommentPraise!= null">
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+
+				<if test="keyCommentPraise.id!= null">
+				and id = #{keyCommentPraise.id}
+				</if>
+				<if test="keyCommentPraise.dataId!= null and keyCommentPraise.dataId!=''">
+				and data_id = #{keyCommentPraise.dataId}
+				</if>
+				<if test="keyCommentPraise.account!= null and keyCommentPraise.account!=''">
+				and account = #{keyCommentPraise.account}
+				</if>
+				<if test="keyCommentPraise.nickName!= null and keyCommentPraise.nickName!=''">
+				and nick_name = #{keyCommentPraise.nickName}
+				</if>
+				<if test="keyCommentPraise.praiseType!= null">
+				and praise_type = #{keyCommentPraise.praiseType}
+				</if>
+				<if test="keyCommentPraise.status!= null">
+				and status = #{keyCommentPraise.status}
+				</if>
+				<if test="keyCommentPraise.createDate!= null and keyCommentPraise.createDate!=''">
+				and create_date = #{keyCommentPraise.createDate}
+				</if>
+				<if test="keyCommentPraise.updateDate!= null and keyCommentPraise.updateDate!=''">
+				and update_date = #{keyCommentPraise.updateDate}
+				</if>
+			</trim>
+		</if> 
+		limit ${(page-1)*pagesize},${pagesize}
+	</select>
+
+	<select id="getRows" parameterType="hashmap" resultType="long">
+		select
+		count(*) from
+		tb_comment_praise
+		<if test="keyCommentPraise!= null">
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="keyCommentPraise.id!= null">
+				and id = #{keyCommentPraise.id}
+				</if>
+				<if test="keyCommentPraise.dataId!= null and keyCommentPraise.dataId!=''">
+				and data_id = #{keyCommentPraise.dataId}
+				</if>
+				<if test="keyCommentPraise.account!= null and keyCommentPraise.account!=''">
+				and account = #{keyCommentPraise.account}
+				</if>
+				<if test="keyCommentPraise.nickName!= null and keyCommentPraise.nickName!=''">
+				and nick_name = #{keyCommentPraise.nickName}
+				</if>
+				<if test="keyCommentPraise.praiseType!= null">
+				and praise_type = #{keyCommentPraise.praiseType}
+				</if>
+				<if test="keyCommentPraise.status!= null">
+				and status = #{keyCommentPraise.status}
+				</if>
+				<if test="keyCommentPraise.createDate!= null and keyCommentPraise.createDate!=''">
+				and create_date = #{keyCommentPraise.createDate}
+				</if>
+				<if test="keyCommentPraise.updateDate!= null and keyCommentPraise.updateDate!=''">
+				and update_date = #{keyCommentPraise.updateDate}
+				</if>
+			</trim>
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.IAgentDriverLogDaoR">
+
+	<resultMap type="com.h2y.os.entity.AgentDriverLog" id="agentdriverlogDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="realName" column="real_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="nickName" column="nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="clientType" column="client_type" javaType="string" jdbcType="VARCHAR" />
+		<result property="agentType" column="agent_type" javaType="string" jdbcType="VARCHAR" />
+		<result property="version" column="version" javaType="string" jdbcType="VARCHAR" />
+		<result property="clientTel" column="client_tel" javaType="string" jdbcType="VARCHAR" />
+		<result property="agentId" column="agent_id" javaType="string" jdbcType="VARCHAR" />
+		<result property="startAddress" column="start_address" javaType="string" jdbcType="VARCHAR" />
+		<result property="endAddress" column="end_address" javaType="string" jdbcType="VARCHAR" />
+		<result property="yuYueTime" column="yu_yue_time" javaType="string" jdbcType="VARCHAR" />
+		<result property="driverCount" column="driver_count" javaType="int" jdbcType="INTEGER" />
+		<result property="contactName" column="contact_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="contactTel" column="contact_tel" javaType="string" jdbcType="VARCHAR" />
+		<result property="gpsLongitude" column="gps_longitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="gpsLatitude" column="gps_latitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="accuracy" column="accuracy" javaType="int" jdbcType="INTEGER" />
+		<result property="result" column="result" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+
+	<select id="get" parameterType="long"
+		resultMap="agentdriverlogDaoMap">
+		select * from tb_agent_driver_log where id = #{id}
+	</select>
+
+	<select id="getList" parameterType="com.h2y.os.entity.AgentDriverLog"
+		resultMap="agentdriverlogDaoMap">
+		select * from
+		tb_agent_driver_log
+
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			
+			<if test="id!= null">
+			and id = #{id}
+			</if>
+			<if test="memberId!= null">
+			and member_id = #{memberId}
+			</if>
+			<if test="account!= null and account!=''">
+			and account = #{account}
+			</if>
+			<if test="realName!= null and realName!=''">
+			and real_name = #{realName}
+			</if>
+			<if test="nickName!= null and nickName!=''">
+			and nick_name = #{nickName}
+			</if>
+			<if test="createDate!= null and createDate!=''">
+			and create_date = #{createDate}
+			</if>
+			<if test="clientType!= null and clientType!=''">
+			and client_type = #{clientType}
+			</if>
+			<if test="agentType!= null and agentType!=''">
+			and agent_type = #{agentType}
+			</if>
+			<if test="version!= null and version!=''">
+			and version = #{version}
+			</if>
+			<if test="clientTel!= null and clientTel!=''">
+			and client_tel = #{clientTel}
+			</if>
+			<if test="agentId!= null and agentId!=''">
+			and agent_id = #{agentId}
+			</if>
+			<if test="startAddress!= null and startAddress!=''">
+			and start_address = #{startAddress}
+			</if>
+			<if test="endAddress!= null and endAddress!=''">
+			and end_address = #{endAddress}
+			</if>
+			<if test="yuYueTime!= null and yuYueTime!=''">
+			and yu_yue_time = #{yuYueTime}
+			</if>
+			<if test="driverCount!= null">
+			and driver_count = #{driverCount}
+			</if>
+			<if test="contactName!= null and contactName!=''">
+			and contact_name = #{contactName}
+			</if>
+			<if test="contactTel!= null and contactTel!=''">
+			and contact_tel = #{contactTel}
+			</if>
+			<if test="gpsLongitude!= null and gpsLongitude!=''">
+			and gps_longitude = #{gpsLongitude}
+			</if>
+			<if test="gpsLatitude!= null and gpsLatitude!=''">
+			and gps_latitude = #{gpsLatitude}
+			</if>
+			<if test="accuracy!= null">
+			and accuracy = #{accuracy}
+			</if>
+			<if test="result!= null and result!=''">
+			and result = #{result}
+			</if>
+		</trim>
+
+	</select>
+
+
+
+
+	<select id="getListPage" parameterType="hashmap" resultMap="agentdriverlogDaoMap">
+		select
+		*
+		from
+		tb_agent_driver_log
+		<if test="keyAgentDriverLog!= null">
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+
+				<if test="keyAgentDriverLog.id!= null">
+				and id = #{keyAgentDriverLog.id}
+				</if>
+				<if test="keyAgentDriverLog.memberId!= null">
+				and member_id = #{keyAgentDriverLog.memberId}
+				</if>
+				<if test="keyAgentDriverLog.account!= null and keyAgentDriverLog.account!=''">
+				and account = #{keyAgentDriverLog.account}
+				</if>
+				<if test="keyAgentDriverLog.realName!= null and keyAgentDriverLog.realName!=''">
+				and real_name = #{keyAgentDriverLog.realName}
+				</if>
+				<if test="keyAgentDriverLog.nickName!= null and keyAgentDriverLog.nickName!=''">
+				and nick_name = #{keyAgentDriverLog.nickName}
+				</if>
+				<if test="keyAgentDriverLog.createDate!= null and keyAgentDriverLog.createDate!=''">
+				and create_date = #{keyAgentDriverLog.createDate}
+				</if>
+				<if test="keyAgentDriverLog.clientType!= null and keyAgentDriverLog.clientType!=''">
+				and client_type = #{keyAgentDriverLog.clientType}
+				</if>
+				<if test="keyAgentDriverLog.agentType!= null and keyAgentDriverLog.agentType!=''">
+				and agent_type = #{keyAgentDriverLog.agentType}
+				</if>
+				<if test="keyAgentDriverLog.version!= null and keyAgentDriverLog.version!=''">
+				and version = #{keyAgentDriverLog.version}
+				</if>
+				<if test="keyAgentDriverLog.clientTel!= null and keyAgentDriverLog.clientTel!=''">
+				and client_tel = #{keyAgentDriverLog.clientTel}
+				</if>
+				<if test="keyAgentDriverLog.agentId!= null and keyAgentDriverLog.agentId!=''">
+				and agent_id = #{keyAgentDriverLog.agentId}
+				</if>
+				<if test="keyAgentDriverLog.startAddress!= null and keyAgentDriverLog.startAddress!=''">
+				and start_address = #{keyAgentDriverLog.startAddress}
+				</if>
+				<if test="keyAgentDriverLog.endAddress!= null and keyAgentDriverLog.endAddress!=''">
+				and end_address = #{keyAgentDriverLog.endAddress}
+				</if>
+				<if test="keyAgentDriverLog.yuYueTime!= null and keyAgentDriverLog.yuYueTime!=''">
+				and yu_yue_time = #{keyAgentDriverLog.yuYueTime}
+				</if>
+				<if test="keyAgentDriverLog.driverCount!= null">
+				and driver_count = #{keyAgentDriverLog.driverCount}
+				</if>
+				<if test="keyAgentDriverLog.contactName!= null and keyAgentDriverLog.contactName!=''">
+				and contact_name = #{keyAgentDriverLog.contactName}
+				</if>
+				<if test="keyAgentDriverLog.contactTel!= null and keyAgentDriverLog.contactTel!=''">
+				and contact_tel = #{keyAgentDriverLog.contactTel}
+				</if>
+				<if test="keyAgentDriverLog.gpsLongitude!= null and keyAgentDriverLog.gpsLongitude!=''">
+				and gps_longitude = #{keyAgentDriverLog.gpsLongitude}
+				</if>
+				<if test="keyAgentDriverLog.gpsLatitude!= null and keyAgentDriverLog.gpsLatitude!=''">
+				and gps_latitude = #{keyAgentDriverLog.gpsLatitude}
+				</if>
+				<if test="keyAgentDriverLog.accuracy!= null">
+				and accuracy = #{keyAgentDriverLog.accuracy}
+				</if>
+				<if test="keyAgentDriverLog.result!= null and keyAgentDriverLog.result!=''">
+				and result = #{keyAgentDriverLog.result}
+				</if>
+			</trim>
+		</if> 
+		limit ${(page-1)*pagesize},${pagesize}
+	</select>
+
+	<select id="getRows" parameterType="hashmap" resultType="long">
+		select
+		count(*) from
+		tb_agent_driver_log
+		<if test="keyAgentDriverLog!= null">
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="keyAgentDriverLog.id!= null">
+				and id = #{keyAgentDriverLog.id}
+				</if>
+				<if test="keyAgentDriverLog.memberId!= null">
+				and member_id = #{keyAgentDriverLog.memberId}
+				</if>
+				<if test="keyAgentDriverLog.account!= null and keyAgentDriverLog.account!=''">
+				and account = #{keyAgentDriverLog.account}
+				</if>
+				<if test="keyAgentDriverLog.realName!= null and keyAgentDriverLog.realName!=''">
+				and real_name = #{keyAgentDriverLog.realName}
+				</if>
+				<if test="keyAgentDriverLog.nickName!= null and keyAgentDriverLog.nickName!=''">
+				and nick_name = #{keyAgentDriverLog.nickName}
+				</if>
+				<if test="keyAgentDriverLog.createDate!= null and keyAgentDriverLog.createDate!=''">
+				and create_date = #{keyAgentDriverLog.createDate}
+				</if>
+				<if test="keyAgentDriverLog.clientType!= null and keyAgentDriverLog.clientType!=''">
+				and client_type = #{keyAgentDriverLog.clientType}
+				</if>
+				<if test="keyAgentDriverLog.agentType!= null and keyAgentDriverLog.agentType!=''">
+				and agent_type = #{keyAgentDriverLog.agentType}
+				</if>
+				<if test="keyAgentDriverLog.version!= null and keyAgentDriverLog.version!=''">
+				and version = #{keyAgentDriverLog.version}
+				</if>
+				<if test="keyAgentDriverLog.clientTel!= null and keyAgentDriverLog.clientTel!=''">
+				and client_tel = #{keyAgentDriverLog.clientTel}
+				</if>
+				<if test="keyAgentDriverLog.agentId!= null and keyAgentDriverLog.agentId!=''">
+				and agent_id = #{keyAgentDriverLog.agentId}
+				</if>
+				<if test="keyAgentDriverLog.startAddress!= null and keyAgentDriverLog.startAddress!=''">
+				and start_address = #{keyAgentDriverLog.startAddress}
+				</if>
+				<if test="keyAgentDriverLog.endAddress!= null and keyAgentDriverLog.endAddress!=''">
+				and end_address = #{keyAgentDriverLog.endAddress}
+				</if>
+				<if test="keyAgentDriverLog.yuYueTime!= null and keyAgentDriverLog.yuYueTime!=''">
+				and yu_yue_time = #{keyAgentDriverLog.yuYueTime}
+				</if>
+				<if test="keyAgentDriverLog.driverCount!= null">
+				and driver_count = #{keyAgentDriverLog.driverCount}
+				</if>
+				<if test="keyAgentDriverLog.contactName!= null and keyAgentDriverLog.contactName!=''">
+				and contact_name = #{keyAgentDriverLog.contactName}
+				</if>
+				<if test="keyAgentDriverLog.contactTel!= null and keyAgentDriverLog.contactTel!=''">
+				and contact_tel = #{keyAgentDriverLog.contactTel}
+				</if>
+				<if test="keyAgentDriverLog.gpsLongitude!= null and keyAgentDriverLog.gpsLongitude!=''">
+				and gps_longitude = #{keyAgentDriverLog.gpsLongitude}
+				</if>
+				<if test="keyAgentDriverLog.gpsLatitude!= null and keyAgentDriverLog.gpsLatitude!=''">
+				and gps_latitude = #{keyAgentDriverLog.gpsLatitude}
+				</if>
+				<if test="keyAgentDriverLog.accuracy!= null">
+				and accuracy = #{keyAgentDriverLog.accuracy}
+				</if>
+				<if test="keyAgentDriverLog.result!= null and keyAgentDriverLog.result!=''">
+				and result = #{keyAgentDriverLog.result}
+				</if>
+			</trim>
+		</if>
+	</select>
+</mapper>

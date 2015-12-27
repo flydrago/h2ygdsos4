@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.ICommonDaoR">
+
+	<resultMap type="com.h2y.os.entity.SysUnits" id="sysunitsDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitCode" column="unit_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="parentId" column="parent_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitDomain" column="unit_domain" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitName" column="unit_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="shortName" column="short_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="regDate" column="reg_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="stopDate" column="stop_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="userCount" column="user_count" javaType="long" jdbcType="BIGINT" />
+		<result property="unitStatus" column="unit_status" javaType="string" jdbcType="VARCHAR" />
+		<result property="adminUrl" column="admin_url" javaType="string" jdbcType="VARCHAR" />
+		<result property="portalUrl" column="portal_url" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitAddress" column="unit_address" javaType="string" jdbcType="VARCHAR" />
+		<result property="telAreaCode" column="tel_area_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="tel" column="tel" javaType="string" jdbcType="VARCHAR" />
+		<result property="telService" column="tel_service" javaType="string" jdbcType="VARCHAR" />
+		<result property="fax" column="fax" javaType="string" jdbcType="VARCHAR" />
+		<result property="legalPerson" column="legal_person" javaType="string" jdbcType="VARCHAR" />
+		<result property="legalPersonMobile" column="legal_person_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitType" column="unit_type" javaType="int" jdbcType="INTEGER" />
+		<result property="s3ucode" column="s3ucode" javaType="string" jdbcType="VARCHAR" />
+		<result property="s3uname" column="s3uname" javaType="string" jdbcType="VARCHAR" />
+		<result property="s3createdate" column="s3createdate" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="unitKind" column="unit_kind" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap type="com.h2y.os.entity.Zone" id="zoneDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="code" column="code" javaType="string" jdbcType="VARCHAR" />
+		<result property="name" column="name" javaType="string" jdbcType="VARCHAR" />
+		<result property="pid" column="pid" javaType="string" jdbcType="VARCHAR" />
+		<result property="pcode" column="pcode" javaType="string" jdbcType="VARCHAR" />
+		<result property="preFix" column="pre_fix" javaType="string" jdbcType="VARCHAR" />
+		<result property="level" column="level" javaType="string" jdbcType="VARCHAR" />
+		<result property="isLast" column="is_last" javaType="string" jdbcType="VARCHAR" />
+		<result property="longitude" column="longitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="latitude" column="latitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="location" column="location" javaType="string" jdbcType="VARCHAR" />
+		<result property="spellName" column="spell_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="firSpellName" column="fir_spell_name" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 会员模型 -->
+	<resultMap type="com.h2y.os.entity.MemberUser" id="memberuserDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="password" column="password" javaType="string" jdbcType="VARCHAR" />
+		<result property="realName" column="real_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="nickName" column="nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="sex" column="sex" javaType="string" jdbcType="VARCHAR" />
+		<result property="birDate" column="bir_date" javaType="string" jdbcType="VARCHAR" />
+		<result property="idCard" column="id_card" javaType="string" jdbcType="VARCHAR" />
+		<result property="mailAdd" column="mail_add" javaType="string" jdbcType="VARCHAR" />
+		<result property="telPhone" column="tel_phone" javaType="string" jdbcType="VARCHAR" />
+		<result property="zone" column="zone" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneDetail" column="zone_detail" javaType="string" jdbcType="VARCHAR" />
+		<result property="qrPath" column="qr_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="qrRelPath" column="qr_rel_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="uuid" column="uuid" javaType="string" jdbcType="VARCHAR" />
+		<result property="headPath" column="head_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="levelId" column="level_id" javaType="long" jdbcType="BIGINT" />
+		<result property="openId" column="open_id" javaType="string" jdbcType="VARCHAR" />
+		<result property="regDevice" column="reg_device" javaType="string" jdbcType="VARCHAR" />
+		<result property="regSource" column="reg_source" javaType="string" jdbcType="VARCHAR" />
+		<result property="loginType" column="login_type" javaType="string" jdbcType="VARCHAR" />
+		<result property="loginDate" column="login_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="type" column="type" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="iosPushCode" column="ios_push_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="androidPushCode" column="android_push_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="isAgreement" column="is_agreement" javaType="int" jdbcType="INTEGER" />
+		
+	</resultMap>
+	
+	<select id="getSysUnitsById" parameterType="long"  resultMap="sysunitsDaoMap">
+		SELECT * FROM tb_sys_units where id = #{id}
+	</select>
+	
+	<select id="getListByZoneCodeAndUnitType" parameterType="hashmap"  resultMap="sysunitsDaoMap">
+		SELECT * FROM tb_sys_units where zone_code = #{zoneCode} and unit_type = #{unitType}
+	</select>
+	
+	<select id="getZoneByCode" parameterType="string" resultMap="zoneDaoMap">
+		select * from tb_zone where code = #{code}
+	</select>
+	
+	
+	<!-- 根据会员ID查询会员 -->
+	<select id="getMemberUser" parameterType="long" resultMap="memberuserDaoMap">
+		SELECT * FROM tb_member_user WHERE status = 0 and id = #{id}
+	</select>
+	
+	<!-- 根据account查询会员 -->
+	<select id="getMemberByAccount" parameterType="string" resultMap="memberuserDaoMap">
+		select * from tb_member_user where status = 0 and account = #{account}
+	</select>
+	
+	
+	<!-- 根据uuid查询会员 -->
+	<select id="getMemberByUuid" parameterType="string" resultMap="memberuserDaoMap">
+		select * from tb_member_user where status = 0 and uuid = #{uuid}
+	</select>
+	
+	<select id="getSysUnitsByDomain" parameterType="string"  resultMap="sysunitsDaoMap">
+		SELECT * FROM tb_sys_units where unit_domain = #{unitDomain}
+	</select>
+</mapper>

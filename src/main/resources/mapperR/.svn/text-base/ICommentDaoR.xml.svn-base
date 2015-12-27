@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.ICommentDaoR">
+
+	<resultMap type="com.h2y.os.entity.Comment" id="commentDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="commentNo" column="comment_no" javaType="string" jdbcType="VARCHAR" />
+		<result property="dataId" column="data_id" javaType="string" jdbcType="VARCHAR" />
+		<result property="dataType" column="data_type" javaType="int" jdbcType="INTEGER" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="nickName" column="nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="content" column="content" javaType="string" jdbcType="VARCHAR" />
+		<result property="level" column="level" javaType="int" jdbcType="INTEGER" />
+		<result property="parentId" column="parent_id" javaType="long" jdbcType="BIGINT" />
+		<result property="inheritLevel" column="inherit_level" javaType="int" jdbcType="INTEGER" />
+		<result property="praiseCount" column="praise_count" javaType="int" jdbcType="INTEGER" />
+		<result property="oppositeCount" column="opposite_count" javaType="int" jdbcType="INTEGER" />
+		<result property="unitsId" column="units_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="data1" column="data_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="data2" column="data_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="data3" column="data_3" javaType="string" jdbcType="VARCHAR" />
+		<result property="data4" column="data_4" javaType="string" jdbcType="VARCHAR" />
+		<result property="data5" column="data_5" javaType="string" jdbcType="VARCHAR" />
+		<result property="data6" column="data_6" javaType="string" jdbcType="VARCHAR" />
+		<result property="data7" column="data_7" javaType="string" jdbcType="VARCHAR" />
+		<result property="data8" column="data_8" javaType="int" jdbcType="INTEGER" />
+		<result property="data9" column="data_9" javaType="double" jdbcType="DOUBLE" />
+		<result property="data10" column="data_10" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="data11" column="data_11" javaType="long" jdbcType="BIGINT" />
+		<result property="data12" column="data_12" javaType="double" jdbcType="DOUBLE" />
+	</resultMap>
+	
+
+	<select id="get" parameterType="long"
+		resultMap="commentDaoMap">
+		select * from tb_comment where id = #{id}
+	</select>
+
+	<select id="getList" parameterType="hashmap"
+		resultMap="commentDaoMap">
+		select * from
+		tb_comment
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="id!= null">
+			and id = #{id}
+			</if>
+			<if test="commentNo!= null and commentNo!=''">
+			and comment_no = #{commentNo}
+			</if>
+			<if test="dataId!= null and dataId!=''">
+			and data_id = #{dataId}
+			</if>
+			<if test="dataType!= null">
+			and data_type = #{dataType}
+			</if>
+			<if test="account!= null and account!=''">
+			and account = #{account}
+			</if>
+			<if test="nickName!= null and nickName!=''">
+			and nick_name = #{nickName}
+			</if>
+			<if test="content!= null and content!=''">
+			and content = #{content}
+			</if>
+			<if test="level!= null">
+			and level = #{level}
+			</if>
+			<if test="parentId!= null">
+			and parent_id = #{parentId}
+			</if>
+			<if test="inheritLevel!= null">
+			and inherit_level = #{inheritLevel}
+			</if>
+			<if test="praiseCount!= null">
+			and praise_count = #{praiseCount}
+			</if>
+			<if test="oppositeCount!= null">
+			and opposite_count = #{oppositeCount}
+			</if>
+			<if test="unitsId!= null">
+			and units_id = #{unitsId}
+			</if>
+			<if test="zoneCode!= null and zoneCode!=''">
+			and zone_code = #{zoneCode}
+			</if>
+			<if test="createDate!= null and createDate!=''">
+			and create_date = #{createDate}
+			</if>
+			<if test="updateDate!= null and updateDate!=''">
+			and update_date = #{updateDate}
+			</if>
+			<if test="status!= null">
+			and status = #{status}
+			</if>
+			<if test="memo!= null and memo!=''">
+			and memo = #{memo}
+			</if>
+			<if test="data1!= null and data1!=''">
+			and data_1 = #{data1}
+			</if>
+			<if test="data2!= null and data2!=''">
+			and data_2 = #{data2}
+			</if>
+			<if test="data3!= null and data3!=''">
+			and data_3 = #{data3}
+			</if>
+			<if test="data4!= null and data4!=''">
+			and data_4 = #{data4}
+			</if>
+			<if test="data5!= null and data5!=''">
+			and data_5 = #{data5}
+			</if>
+			<if test="data6!= null and data6!=''">
+			and data_6 = #{data6}
+			</if>
+			<if test="data7!= null and data7!=''">
+			and data_7 = #{data7}
+			</if>
+			<if test="data8!= null">
+			and data_8 = #{data8}
+			</if>
+			<if test="data9!= null and data9!=''">
+			and data_9 = #{data9}
+			</if>
+			<if test="data10!= null and data10!=''">
+			and data_10 = #{data10}
+			</if>
+			<if test="data11!= null">
+			and data_11 = #{data11}
+			</if>
+			<if test="data12!= null and data12!=''">
+			and data_12 = #{data12}
+			</if>
+		</trim>
+	</select>
+
+
+
+
+	<select id="getListPage" parameterType="hashmap" resultMap="commentDaoMap">
+		select
+		*
+		from
+		tb_comment
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="dataId!= null and dataId!=''">
+				and data_id = #{dataId}
+				</if>
+				<if test="account!= null and account!=''">
+				and account = #{account}
+				</if>
+				<if test="level!= null">
+				and level = #{level}
+				</if>
+				<if test="unitsId!= null">
+				and units_id = #{unitsId}
+				</if>
+				<if test="zoneCode!= null and zoneCode!=''">
+				and zone_code = #{zoneCode}
+				</if>
+				<if test="status!= null">
+				and status = #{status}
+				</if>
+		</trim>
+		limit ${(page-1)*pagesize},${pagesize}
+	</select>
+
+	<select id="getRows" parameterType="hashmap" resultType="long">
+		select
+		count(*) from
+		tb_comment
+		<if test="keyComment!= null">
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="keyComment.id!= null">
+				and id = #{keyComment.id}
+				</if>
+				<if test="keyComment.commentNo!= null and keyComment.commentNo!=''">
+				and comment_no = #{keyComment.commentNo}
+				</if>
+				<if test="keyComment.dataId!= null and keyComment.dataId!=''">
+				and data_id = #{keyComment.dataId}
+				</if>
+				<if test="keyComment.dataType!= null">
+				and data_type = #{keyComment.dataType}
+				</if>
+				<if test="keyComment.account!= null and keyComment.account!=''">
+				and account = #{keyComment.account}
+				</if>
+				<if test="keyComment.nickName!= null and keyComment.nickName!=''">
+				and nick_name = #{keyComment.nickName}
+				</if>
+				<if test="keyComment.content!= null and keyComment.content!=''">
+				and content = #{keyComment.content}
+				</if>
+				<if test="keyComment.level!= null">
+				and level = #{keyComment.level}
+				</if>
+				<if test="keyComment.parentId!= null">
+				and parent_id = #{keyComment.parentId}
+				</if>
+				<if test="keyComment.inheritLevel!= null">
+				and inherit_level = #{keyComment.inheritLevel}
+				</if>
+				<if test="keyComment.praiseCount!= null">
+				and praise_count = #{keyComment.praiseCount}
+				</if>
+				<if test="keyComment.oppositeCount!= null">
+				and opposite_count = #{keyComment.oppositeCount}
+				</if>
+				<if test="keyComment.unitsId!= null">
+				and units_id = #{keyComment.unitsId}
+				</if>
+				<if test="keyComment.zoneCode!= null and keyComment.zoneCode!=''">
+				and zone_code = #{keyComment.zoneCode}
+				</if>
+				<if test="keyComment.createDate!= null and keyComment.createDate!=''">
+				and create_date = #{keyComment.createDate}
+				</if>
+				<if test="keyComment.updateDate!= null and keyComment.updateDate!=''">
+				and update_date = #{keyComment.updateDate}
+				</if>
+				<if test="keyComment.status!= null">
+				and status = #{keyComment.status}
+				</if>
+				<if test="keyComment.memo!= null and keyComment.memo!=''">
+				and memo = #{keyComment.memo}
+				</if>
+				<if test="keyComment.data1!= null and keyComment.data1!=''">
+				and data_1 = #{keyComment.data1}
+				</if>
+				<if test="keyComment.data2!= null and keyComment.data2!=''">
+				and data_2 = #{keyComment.data2}
+				</if>
+				<if test="keyComment.data3!= null and keyComment.data3!=''">
+				and data_3 = #{keyComment.data3}
+				</if>
+				<if test="keyComment.data4!= null and keyComment.data4!=''">
+				and data_4 = #{keyComment.data4}
+				</if>
+				<if test="keyComment.data5!= null and keyComment.data5!=''">
+				and data_5 = #{keyComment.data5}
+				</if>
+				<if test="keyComment.data6!= null and keyComment.data6!=''">
+				and data_6 = #{keyComment.data6}
+				</if>
+				<if test="keyComment.data7!= null and keyComment.data7!=''">
+				and data_7 = #{keyComment.data7}
+				</if>
+				<if test="keyComment.data8!= null">
+				and data_8 = #{keyComment.data8}
+				</if>
+				<if test="keyComment.data9!= null and keyComment.data9!=''">
+				and data_9 = #{keyComment.data9}
+				</if>
+				<if test="keyComment.data10!= null and keyComment.data10!=''">
+				and data_10 = #{keyComment.data10}
+				</if>
+				<if test="keyComment.data11!= null">
+				and data_11 = #{keyComment.data11}
+				</if>
+				<if test="keyComment.data12!= null and keyComment.data12!=''">
+				and data_12 = #{keyComment.data12}
+				</if>
+			</trim>
+		</if>
+	</select>
+</mapper>

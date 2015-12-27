@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.IGiftBagGoodsRtDaoR">
+
+	<resultMap type="com.h2y.os.entity.GiftBagGoodsRt" id="giftbaggoodsrtDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="bagCode" column="bag_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitType" column="unit_type" javaType="int" jdbcType="INTEGER" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNickName" column="goods_nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsPriceId" column="goods_price_id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsPriceVersion" column="goods_price_version" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsId" column="goods_id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsCount" column="goods_count" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsAmount" column="goods_amount" javaType="double" jdbcType="DOUBLE" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap type="java.util.Map" id="goodspriceDaoListMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsId" column="goods_id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsTypeId" column="goods_type_id" javaType="long" jdbcType="BIGINT" />
+		<result property="gdsCode" column="gds_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="gdsCode2" column="gds_code2" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNumber" column="goods_number" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsName" column="goods_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNickName" column="goods_nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="inventory" column="inventory" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsUnit" column="goods_unit" javaType="int" jdbcType="INTEGER" />
+		<result property="spec" column="spec" javaType="int" jdbcType="INTEGER" />
+		<result property="spellName" column="spell_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="firSpellName" column="fir_spell_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="maxPrice" column="max_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="minPrice" column="min_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="memberPrice" column="member_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="marketPrice" column="market_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="sellPrice" column="sell_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="version" column="version" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="shelvesDate" column="shelves_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="clickRate" column="click_rate" javaType="int" jdbcType="INTEGER" />
+		<result property="sellRate" column="sell_rate" javaType="int" jdbcType="INTEGER" />
+		<result property="markIds" column="mark_ids" javaType="string" jdbcType="VARCHAR" />
+		<result property="markInfoIds" column="mark_info_ids" javaType="string" jdbcType="VARCHAR" />
+		<result property="ord" column="ord" javaType="long" jdbcType="BIGINT" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="userId" column="user_id" javaType="long" jdbcType="BIGINT" />
+		<result property="sellUnit" column="sell_unit" javaType="long" jdbcType="BIGINT" />
+		<result property="isLimitSell" column="is_limit_sell" javaType="int" jdbcType="INTEGER" />
+		<result property="isAllowGrade" column="is_allow_grade" javaType="int" jdbcType="INTEGER" />
+		<result property="isGiftGrade" column="is_gift_grade" javaType="int" jdbcType="INTEGER" />
+		<result property="limitSellNumber" column="limit_sell_number" javaType="long" jdbcType="BIGINT" />
+		<result property="limitGradeNumber" column="limit_grade_number" javaType="double" jdbcType="DOUBLE" />
+		<result property="limitGiftNumber" column="limit_gift_number" javaType="long" jdbcType="BIGINT" />
+		<result property="isMallVisible" column="is_mall_visible" javaType="int" jdbcType="INTEGER" />
+		<result property="gdsQr1" column="gds_qr_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="gdsQrInside" column="gds_qr_inside" javaType="string" jdbcType="VARCHAR" />
+		<result property="sparePrice1" column="spare_price1" javaType="double" jdbcType="DOUBLE" />
+		<result property="sparePrice2" column="spare_price2" javaType="double" jdbcType="DOUBLE" />
+		<result property="markIds2" column="mark_ids2" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsSource" column="goods_source" javaType="int" jdbcType="INTEGER" />
+		<result property="addedDate" column="added_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="goodsVersion" column="goods_version" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsStatus" column="goods_status" javaType="int" jdbcType="INTEGER" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitType" column="unit_type" javaType="int" jdbcType="INTEGER" />
+		<result property="isActivity" column="is_activity" javaType="int" jdbcType="INTEGER" />
+		<result property="activityPrice" column="activity_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="activityGoodsId" column="activity_goods_id" javaType="long" jdbcType="BIGINT" />
+		<result property="activityType" column="activity_type" javaType="int" jdbcType="INTEGER" />
+		<result property="isGift" column="is_gift" javaType="int" jdbcType="INTEGER" />
+		<result property="isRelation" column="is_relation" javaType="int" jdbcType="INTEGER" />
+		<result property="weight" column="weight" javaType="long" jdbcType="BIGINT" />
+		<result property="isAd" column="is_ad" javaType="long" jdbcType="BIGINT" />
+		<result property="allowGradePrice" column="allow_grade_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="goodsEditStatus" column="goods_edit_status" javaType="int" jdbcType="INTEGER" />
+		<result property="fileDataId" column="file_data_id" javaType="long" jdbcType="BIGINT" />
+		<result property="img" column="img" javaType="string" jdbcType="VARCHAR" />
+		<result property="singlePrice" column="single_price" javaType="double" jdbcType="DOUBLE" />
+	</resultMap>
+	
+	<!-- 商品列表列 -->
+	<sql id="goodsPriceListColumn">
+			gp.id,
+			gp.goods_id,
+			gp.goods_number,
+			gp.goods_name,
+			gp.goods_nick_name,
+			gp.member_price,
+			gp.market_price,
+			gp.sell_price,
+			gp.version,
+			gp.`status`,
+			gp.is_activity,
+			gp.create_date,
+			gp.activity_price,
+			gp.is_gift,
+			gp.goods_edit_status,
+			gp.ord,
+			gp.sell_rate,
+			gp.unit_id,
+			case when gp.is_activity = 1 THEN gp.activity_price ELSE gp.member_price END as single_price,
+			<!-- CONCAT('?bn=fileDataService&amp;id=',CAST(fd.id AS CHAR)) as img-->
+			CONCAT('?bn=goodsLogoService&amp;gpId=',CAST(gp.id AS CHAR),'&amp;gpV=',CAST(gp.version AS CHAR)) as img
+	</sql>
+
+	<select id="get" parameterType="long"
+		resultMap="giftbaggoodsrtDaoMap">
+		select * from tb_gift_bag_goods_rt where id = #{id}
+	</select>
+
+	<select id="getByGoodsPriceId" parameterType="hashmap" resultMap="giftbaggoodsrtDaoMap">
+		select * from tb_gift_bag_goods_rt where bag_code = #{bagCode} and goods_price_id = #{goodsPriceId} and status = 0
+	</select>
+	
+	<select id="getListByBagCode" parameterType="string" resultMap="giftbaggoodsrtDaoMap">
+		select * from tb_gift_bag_goods_rt where bag_code = #{bagCode} and status = 0
+	</select>
+	
+	
+	<select id="getGoodsListByBagCode" parameterType="hashmap"
+		resultMap="goodspriceDaoListMap">
+		SELECT
+			gbg.goods_count as goodsCount,
+			<include refid="goodsPriceListColumn"></include>
+		FROM
+			tb_goods_price gp
+		
+		JOIN tb_gift_bag_goods_rt gbg ON gbg.goods_price_id = gp.id
+		WHERE
+			gbg.bag_code = #{bagCode}
+		and gbg.status = 0 
+		order by gp.ord desc,gp.create_date desc
+	</select>
+	
+</mapper>

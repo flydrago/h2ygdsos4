@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.IWechatActivityDaoW">
+
+	<!-- 活动规则明细映射 -->
+	<resultMap type="com.h2y.os.entity.WechatActivity" id="wechatactivityDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="userId" column="user_id" javaType="long" jdbcType="BIGINT" />
+		<result property="name" column="name" javaType="string" jdbcType="VARCHAR" />
+		<result property="description" column="description" javaType="string" jdbcType="VARCHAR" />
+		<result property="keyword" column="keyword" javaType="string" jdbcType="VARCHAR" />
+		<result property="fileName" column="file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="diskFileName" column="disk_file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="rootPath" column="root_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="relativePath" column="relative_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="fileSize" column="file_size" javaType="long" jdbcType="BIGINT" />
+		<result property="fileSuffix" column="file_suffix" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="startDate" column="start_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="endDate" column="end_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="prizeInfo" column="prize_info" javaType="int" jdbcType="INTEGER" />
+		<result property="limitNumber" column="limit_number" javaType="int" jdbcType="INTEGER" />
+		<result property="limitFlag" column="limit_flag" javaType="int" jdbcType="INTEGER" />
+		<result property="ifShareReward" column="if_share_reward" javaType="int" jdbcType="INTEGER" />
+		<result property="rewardNumber" column="reward_number" javaType="int" jdbcType="INTEGER" />
+		<result property="activityStatus" column="activity_status" javaType="int" jdbcType="INTEGER" />
+		<result property="ifSetDate" column="if_set_date" javaType="int" jdbcType="INTEGER" />
+		<result property="activityType" column="activity_type" javaType="string" jdbcType="VARCHAR" />
+		<result property="reverse1" column="reverse_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="reverse2" column="reverse_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="useVal" column="use_val" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 活动规则明细 -->
+	<resultMap type="java.util.Map" id="wechatactivityDaoListMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="userId" column="user_id" javaType="long" jdbcType="BIGINT" />
+		<result property="name" column="name" javaType="string" jdbcType="VARCHAR" />
+		<result property="description" column="description" javaType="string" jdbcType="VARCHAR" />
+		<result property="keyword" column="keyword" javaType="string" jdbcType="VARCHAR" />
+		<result property="fileName" column="file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="diskFileName" column="disk_file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="rootPath" column="root_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="relativePath" column="relative_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="fileSize" column="file_size" javaType="long" jdbcType="BIGINT" />
+		<result property="fileSuffix" column="file_suffix" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="startDate" column="start_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="endDate" column="end_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="prizeInfo" column="prize_info" javaType="int" jdbcType="INTEGER" />
+		<result property="limitNumber" column="limit_number" javaType="int" jdbcType="INTEGER" />
+		<result property="limitFlag" column="limit_flag" javaType="int" jdbcType="INTEGER" />
+		<result property="ifShareReward" column="if_share_reward" javaType="int" jdbcType="INTEGER" />
+		<result property="rewardNumber" column="reward_number" javaType="int" jdbcType="INTEGER" />
+		<result property="activityStatus" column="activity_status" javaType="int" jdbcType="INTEGER" />
+		<result property="ifSetDate" column="if_set_date" javaType="int" jdbcType="INTEGER" />
+		<result property="activityType" column="activity_type" javaType="string" jdbcType="VARCHAR" />
+		<result property="reverse1" column="reverse_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="reverse2" column="reverse_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="useVal" column="use_val" javaType="int" jdbcType="INTEGER" />
+		<result property="path" column="path" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<!-- 活动奖项映射 -->
+	<resultMap type="com.h2y.os.entity.WechatActivityPrize" id="wechatactivityprizeDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="activityId" column="activity_id" javaType="long" jdbcType="BIGINT" />
+		<result property="prizeName" column="prize_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="prizeCount" column="prize_count" javaType="long" jdbcType="BIGINT" />
+		<result property="prizeNumber" column="prize_number" javaType="long" jdbcType="BIGINT" />
+		<result property="prizeRate" column="prize_rate" javaType="double" jdbcType="DOUBLE" />
+		<result property="prizeLevel" column="prize_level" javaType="string" jdbcType="VARCHAR" />
+		<result property="prizeType" column="prize_type" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsPriceId" column="goods_price_id" javaType="long" jdbcType="BIGINT" />
+		<result property="ord" column="ord" javaType="int" jdbcType="INTEGER" />
+		<result property="reverse1" column="reverse_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="reverse2" column="reverse_2" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	
+	
+	<!-- 添加活动参与历史 -->
+	<insert id="addWechatActivityHis" parameterType="com.h2y.os.entity.WechatActivityHis">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_wechat_activity_his 
+		</selectKey>  
+		insert into tb_wechat_activity_his
+		(
+		unit_id,
+		activity_id,
+		prize_id,
+		member_id,
+		open_id,
+		create_date,
+		exchange_date,
+		prizer_mobile,
+		prizer_name,
+		prizer_address,
+		if_exchange,
+		reverse_1,
+		reverse_2,
+		prize_name,
+		prize_number,
+		prize_rate,
+		prize_level,
+		prize_type,
+		goods_price_id,
+		goods_price_version
+		)
+		values (
+		#{unitId,jdbcType=BIGINT},
+		#{activityId,jdbcType=BIGINT},
+		#{prizeId,jdbcType=BIGINT},
+		#{memberId,jdbcType=BIGINT},
+		#{openId,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{exchangeDate,jdbcType=TIMESTAMP},
+		#{prizerMobile,jdbcType=VARCHAR},
+		#{prizerName,jdbcType=VARCHAR},
+		#{prizerAddress,jdbcType=VARCHAR},
+		#{ifExchange,jdbcType=INTEGER},
+		#{reverse1,jdbcType=VARCHAR},
+		#{reverse2,jdbcType=VARCHAR},
+		#{prizeName,jdbcType=VARCHAR},
+		#{prizeNumber,jdbcType=BIGINT},
+		#{prizeRate,jdbcType=DOUBLE},
+		#{prizeLevel,jdbcType=VARCHAR},
+		#{prizeType,jdbcType=VARCHAR},
+		#{goodsPriceId,jdbcType=BIGINT},
+		#{goodsPriceVersion,jdbcType=INTEGER}
+		)
+	</insert>
+	
+	
+	
+	
+</mapper>

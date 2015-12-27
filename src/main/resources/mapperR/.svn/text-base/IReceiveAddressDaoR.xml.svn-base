@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.IReceiveAddressDaoR">
+
+	<resultMap type="com.h2y.os.entity.ReceiveAddress" id="receiveaddressDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneId" column="zone_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneName" column="zone_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneDetail" column="zone_detail" javaType="string" jdbcType="VARCHAR" />
+		<result property="longitude" column="longitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="latitude" column="latitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="receiverName" column="receiver_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMobile" column="receiver_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverTelephone" column="receiver_telephone" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMail" column="receiver_mail" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="isDefault" column="is_default" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	
+	<resultMap type="java.util.Map" id="receiveaddressDaoListMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneId" column="zone_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneName" column="zone_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneDetail" column="zone_detail" javaType="string" jdbcType="VARCHAR" />
+		<result property="longitude" column="longitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="latitude" column="latitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="receiverName" column="receiver_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMobile" column="receiver_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverTelephone" column="receiver_telephone" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMail" column="receiver_mail" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="isDefault" column="is_default" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	
+
+	<select id="get" parameterType="long"
+		resultMap="receiveaddressDaoMap">
+		select * from tb_receive_address where id = #{id}
+	</select>
+
+	<select id="getListMap" parameterType="hashmap" resultMap="receiveaddressDaoListMap">
+		SELECT
+			id,
+			member_id,
+			longitude,
+			latitude,
+			zone_id,
+			zone_code,
+			zone_name,
+			zone_detail,
+			receiver_name,
+			receiver_mobile,
+			receiver_telephone,
+			is_default,
+			create_date
+		FROM
+			tb_receive_address
+		WHERE
+			member_id = #{memberId}
+		and zone_id = #{zoneId}
+		and `status` = 0
+		order by is_default desc,create_date desc
+		limit ${(page-1)*pagesize},${pagesize}
+	</select>
+
+</mapper>

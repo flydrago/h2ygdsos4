@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.ILogDaoW">
+
+	<insert id="addAgentDriverLog" parameterType="com.h2y.os.entity.AgentDriverLog">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_agent_driver_log 
+		</selectKey>  
+		insert into tb_agent_driver_log
+		(
+		member_id,
+		account,
+		real_name,
+		nick_name,
+		create_date,
+		client_type,
+		version,
+		client_tel,
+		agent_id,
+		start_address,
+		end_address,
+		yu_yue_time,
+		driver_count,
+		contact_name,
+		contact_tel,
+		gps_longitude,
+		gps_latitude,
+		accuracy,
+		result
+		)
+		values (
+		#{memberId,jdbcType=BIGINT},
+		#{account,jdbcType=VARCHAR},
+		#{realName,jdbcType=VARCHAR},
+		#{nickName,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{clientType,jdbcType=VARCHAR},
+		#{version,jdbcType=VARCHAR},
+		#{clientTel,jdbcType=VARCHAR},
+		#{agentId,jdbcType=VARCHAR},
+		#{startAddress,jdbcType=VARCHAR},
+		#{endAddress,jdbcType=VARCHAR},
+		#{yuYueTime,jdbcType=VARCHAR},
+		#{driverCount,jdbcType=INTEGER},
+		#{contactName,jdbcType=VARCHAR},
+		#{contactTel,jdbcType=VARCHAR},
+		#{gpsLongitude,jdbcType=DOUBLE},
+		#{gpsLatitude,jdbcType=DOUBLE},
+		#{accuracy,jdbcType=INTEGER},
+		#{result,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	
+	<insert id="addRoomLog" parameterType="com.h2y.os.entity.RoomLog">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_room_log 
+		</selectKey>  
+		insert into tb_room_log
+		(
+		mobile,
+		user_id,
+		user_account,
+		create_date
+		)
+		values (
+		#{mobile,jdbcType=BIGINT},
+		#{userId,jdbcType=BIGINT},
+		#{userAccount,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+</mapper>

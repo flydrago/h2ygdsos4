@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.IShareHrefDataRtDaoW">
+
+	<resultMap type="com.h2y.os.entity.ShareHrefDataRt" id="sharehrefdatartDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="hrefId" column="href_id" javaType="long" jdbcType="BIGINT" />
+		<result property="dataId" column="data_id" javaType="long" jdbcType="BIGINT" />
+		<result property="ord" column="ord" javaType="int" jdbcType="INTEGER" />
+		<result property="str1" column="str_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="str2" column="str_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="str3" column="str_3" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	<insert id="add" parameterType="com.h2y.os.entity.ShareHrefDataRt">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_share_href_data_rt 
+		</selectKey>  
+		insert into tb_share_href_data_rt
+		(
+		href_id,
+		data_id,
+		ord,
+		str_1,
+		str_2,
+		str_3
+		)
+		values (
+		#{hrefId,jdbcType=BIGINT},
+		#{dataId,jdbcType=BIGINT},
+		#{ord,jdbcType=INTEGER},
+		#{str1,jdbcType=VARCHAR},
+		#{str2,jdbcType=VARCHAR},
+		#{str3,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.h2y.os.entity.ShareHrefDataRt">
+		update tb_share_href_data_rt
+		set
+		href_id = #{hrefId,jdbcType=BIGINT},
+		data_id = #{dataId,jdbcType=BIGINT},
+		ord = #{ord,jdbcType=INTEGER},
+		str_1 = #{str1,jdbcType=VARCHAR},
+		str_2 = #{str2,jdbcType=VARCHAR},
+		str_3 = #{str3,jdbcType=VARCHAR}
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="com.h2y.os.entity.ShareHrefDataRt">
+		delete from
+		tb_share_href_data_rt
+		where
+		id = #{id} 
+	</delete>
+
+	<delete id="deleteById" parameterType="long">
+		delete from
+		tb_share_href_data_rt
+		where
+		id = #{id} 
+	</delete>
+
+
+</mapper>

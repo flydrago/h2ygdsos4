@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.ICommentPicDaoR">
+
+	<resultMap type="com.h2y.os.entity.CommentPic" id="commentpicDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="fileName" column="file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="diskFileName" column="disk_file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="rootPath" column="root_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="relativePath" column="relative_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="fileSize" column="file_size" javaType="long" jdbcType="BIGINT" />
+		<result property="fileSuffix" column="file_suffix" javaType="string" jdbcType="VARCHAR" />
+		<result property="ifDelete" column="if_delete" javaType="int" jdbcType="INTEGER" />
+		<result property="fileType" column="file_type" javaType="int" jdbcType="INTEGER" />
+		<result property="dataId" column="data_id" javaType="string" jdbcType="VARCHAR" />
+		<result property="dataType" column="data_type" javaType="int" jdbcType="INTEGER" />
+		<result property="dataVersion" column="data_version" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="ord" column="ord" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+
+	<select id="get" parameterType="long"
+		resultMap="commentpicDaoMap">
+		select * from tb_comment_pic where id = #{id}
+	</select>
+
+	<select id="getList" parameterType="com.h2y.os.entity.CommentPic"
+		resultMap="commentpicDaoMap">
+		select * from
+		tb_comment_pic
+
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			
+			<if test="id!= null">
+			and id = #{id}
+			</if>
+			<if test="fileName!= null and fileName!=''">
+			and file_name = #{fileName}
+			</if>
+			<if test="diskFileName!= null and diskFileName!=''">
+			and disk_file_name = #{diskFileName}
+			</if>
+			<if test="rootPath!= null and rootPath!=''">
+			and root_path = #{rootPath}
+			</if>
+			<if test="relativePath!= null and relativePath!=''">
+			and relative_path = #{relativePath}
+			</if>
+			<if test="fileSize!= null">
+			and file_size = #{fileSize}
+			</if>
+			<if test="fileSuffix!= null and fileSuffix!=''">
+			and file_suffix = #{fileSuffix}
+			</if>
+			<if test="ifDelete!= null">
+			and if_delete = #{ifDelete}
+			</if>
+			<if test="fileType!= null">
+			and file_type = #{fileType}
+			</if>
+			<if test="dataId!= null and dataId!=''">
+			and data_id = #{dataId}
+			</if>
+			<if test="dataType!= null">
+			and data_type = #{dataType}
+			</if>
+			<if test="dataVersion!= null">
+			and data_version = #{dataVersion}
+			</if>
+			<if test="createDate!= null and createDate!=''">
+			and create_date = #{createDate}
+			</if>
+			<if test="ord!= null">
+			and ord = #{ord}
+			</if>
+		</trim>
+
+	</select>
+
+
+
+
+	<select id="getListPage" parameterType="hashmap" resultMap="commentpicDaoMap">
+		select
+		*
+		from
+		tb_comment_pic
+		<if test="keyCommentPic!= null">
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+
+				<if test="keyCommentPic.id!= null">
+				and id = #{keyCommentPic.id}
+				</if>
+				<if test="keyCommentPic.fileName!= null and keyCommentPic.fileName!=''">
+				and file_name = #{keyCommentPic.fileName}
+				</if>
+				<if test="keyCommentPic.diskFileName!= null and keyCommentPic.diskFileName!=''">
+				and disk_file_name = #{keyCommentPic.diskFileName}
+				</if>
+				<if test="keyCommentPic.rootPath!= null and keyCommentPic.rootPath!=''">
+				and root_path = #{keyCommentPic.rootPath}
+				</if>
+				<if test="keyCommentPic.relativePath!= null and keyCommentPic.relativePath!=''">
+				and relative_path = #{keyCommentPic.relativePath}
+				</if>
+				<if test="keyCommentPic.fileSize!= null">
+				and file_size = #{keyCommentPic.fileSize}
+				</if>
+				<if test="keyCommentPic.fileSuffix!= null and keyCommentPic.fileSuffix!=''">
+				and file_suffix = #{keyCommentPic.fileSuffix}
+				</if>
+				<if test="keyCommentPic.ifDelete!= null">
+				and if_delete = #{keyCommentPic.ifDelete}
+				</if>
+				<if test="keyCommentPic.fileType!= null">
+				and file_type = #{keyCommentPic.fileType}
+				</if>
+				<if test="keyCommentPic.dataId!= null and keyCommentPic.dataId!=''">
+				and data_id = #{keyCommentPic.dataId}
+				</if>
+				<if test="keyCommentPic.dataType!= null">
+				and data_type = #{keyCommentPic.dataType}
+				</if>
+				<if test="keyCommentPic.dataVersion!= null">
+				and data_version = #{keyCommentPic.dataVersion}
+				</if>
+				<if test="keyCommentPic.createDate!= null and keyCommentPic.createDate!=''">
+				and create_date = #{keyCommentPic.createDate}
+				</if>
+				<if test="keyCommentPic.ord!= null">
+				and ord = #{keyCommentPic.ord}
+				</if>
+			</trim>
+		</if> 
+		limit ${(page-1)*pagesize},${pagesize}
+	</select>
+
+	<select id="getRows" parameterType="hashmap" resultType="long">
+		select
+		count(*) from
+		tb_comment_pic
+		<if test="keyCommentPic!= null">
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="keyCommentPic.id!= null">
+				and id = #{keyCommentPic.id}
+				</if>
+				<if test="keyCommentPic.fileName!= null and keyCommentPic.fileName!=''">
+				and file_name = #{keyCommentPic.fileName}
+				</if>
+				<if test="keyCommentPic.diskFileName!= null and keyCommentPic.diskFileName!=''">
+				and disk_file_name = #{keyCommentPic.diskFileName}
+				</if>
+				<if test="keyCommentPic.rootPath!= null and keyCommentPic.rootPath!=''">
+				and root_path = #{keyCommentPic.rootPath}
+				</if>
+				<if test="keyCommentPic.relativePath!= null and keyCommentPic.relativePath!=''">
+				and relative_path = #{keyCommentPic.relativePath}
+				</if>
+				<if test="keyCommentPic.fileSize!= null">
+				and file_size = #{keyCommentPic.fileSize}
+				</if>
+				<if test="keyCommentPic.fileSuffix!= null and keyCommentPic.fileSuffix!=''">
+				and file_suffix = #{keyCommentPic.fileSuffix}
+				</if>
+				<if test="keyCommentPic.ifDelete!= null">
+				and if_delete = #{keyCommentPic.ifDelete}
+				</if>
+				<if test="keyCommentPic.fileType!= null">
+				and file_type = #{keyCommentPic.fileType}
+				</if>
+				<if test="keyCommentPic.dataId!= null and keyCommentPic.dataId!=''">
+				and data_id = #{keyCommentPic.dataId}
+				</if>
+				<if test="keyCommentPic.dataType!= null">
+				and data_type = #{keyCommentPic.dataType}
+				</if>
+				<if test="keyCommentPic.dataVersion!= null">
+				and data_version = #{keyCommentPic.dataVersion}
+				</if>
+				<if test="keyCommentPic.createDate!= null and keyCommentPic.createDate!=''">
+				and create_date = #{keyCommentPic.createDate}
+				</if>
+				<if test="keyCommentPic.ord!= null">
+				and ord = #{keyCommentPic.ord}
+				</if>
+			</trim>
+		</if>
+	</select>
+</mapper>

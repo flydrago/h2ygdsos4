@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.IImportBagDaoW">
+
+	<resultMap type="com.h2y.os.entity.ImportBag" id="importbagDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="userId" column="user_id" javaType="long" jdbcType="BIGINT" />
+		<result property="bagName" column="bag_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="businessUser" column="business_user" javaType="string" jdbcType="VARCHAR" />
+		<result property="businessMobile" column="business_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagCode" column="bag_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitType" column="unit_type" javaType="int" jdbcType="INTEGER" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNumber" column="goods_number" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNickName" column="goods_nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsPriceId" column="goods_price_id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsPriceVersion" column="goods_price_version" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsId" column="goods_id" javaType="long" jdbcType="BIGINT" />
+		<result property="singlePrice" column="single_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="currentTask" column="current_task" javaType="string" jdbcType="VARCHAR" />
+		<result property="chkStatus1" column="chk_status1" javaType="int" jdbcType="INTEGER" />
+		<result property="chkStatus2" column="chk_status2" javaType="int" jdbcType="INTEGER" />
+		<result property="chkStatus3" column="chk_status3" javaType="int" jdbcType="INTEGER" />
+		<result property="chkStatus4" column="chk_status4" javaType="int" jdbcType="INTEGER" />
+		<result property="chkStatus5" column="chk_status5" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="startDate" column="start_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="endDate" column="end_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="data1" column="data_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="data2" column="data_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="data3" column="data_3" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="data4" column="data_4" javaType="int" jdbcType="INTEGER" />
+		<result property="data5" column="data_5" javaType="double" jdbcType="DOUBLE" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap type="com.h2y.os.entity.ImportBagUserRt" id="importbaguserrtDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="bagCode" column="bag_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="toAccount" column="to_account" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsCount" column="goods_count" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="signDate" column="sign_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	
+	
+	<update id="updateBagUserStatus" parameterType="hashmap">
+		update tb_import_bag_user_rt
+		set
+		status = #{status}
+		<if test="status==1">
+			,sign_date = now()
+		</if>
+		where 
+		bag_code = #{bagCode}
+		and to_account = #{toAccount}
+	</update>
+	
+	
+	<update id="updateBagStatus" parameterType="com.h2y.os.entity.ImportBag">
+		update tb_import_bag
+		set
+		status = #{status}
+		where 
+		bag_code = #{bagCode}
+	</update>
+	
+</mapper>

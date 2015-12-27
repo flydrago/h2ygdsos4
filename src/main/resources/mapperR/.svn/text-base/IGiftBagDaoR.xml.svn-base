@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.IGiftBagDaoR">
+
+	<resultMap type="com.h2y.os.entity.GiftBag" id="giftbagDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagCode" column="bag_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsCount" column="goods_count" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsAmount" column="goods_amount" javaType="double" jdbcType="DOUBLE" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="signCode" column="sign_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="securityCode" column="security_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagStatus" column="bag_status" javaType="int" jdbcType="INTEGER" />
+		<result property="signStatus" column="sign_status" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="signDate" column="sign_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="endDate" column="end_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="toAccount" column="to_account" javaType="string" jdbcType="VARCHAR" />
+		<result property="toMobile" column="to_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="toUserName" column="to_user_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="content" column="content" javaType="string" jdbcType="VARCHAR" />
+		<result property="dataType" column="data_type" javaType="int" jdbcType="INTEGER" />
+		<result property="data1" column="data_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="data2" column="data_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="data3" column="data_3" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="data4" column="data_4" javaType="int" jdbcType="INTEGER" />
+		<result property="data5" column="data_5" javaType="double" jdbcType="DOUBLE" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<resultMap type="java.util.Map" id="giftbagDaoListMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagCode" column="bag_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsCount" column="goods_count" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsAmount" column="goods_amount" javaType="double" jdbcType="DOUBLE" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="signCode" column="sign_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="securityCode" column="security_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagStatus" column="bag_status" javaType="int" jdbcType="INTEGER" />
+		<result property="signStatus" column="sign_status" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="signDate" column="sign_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="endDate" column="end_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="toAccount" column="to_account" javaType="string" jdbcType="VARCHAR" />
+		<result property="toMobile" column="to_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="toUserName" column="to_user_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="content" column="content" javaType="string" jdbcType="VARCHAR" />
+		<result property="dataType" column="data_type" javaType="int" jdbcType="INTEGER" />
+		<result property="data1" column="data_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="data2" column="data_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="data3" column="data_3" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="data4" column="data_4" javaType="int" jdbcType="INTEGER" />
+		<result property="data5" column="data_5" javaType="double" jdbcType="DOUBLE" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+
+	<select id="get" parameterType="long"
+		resultMap="giftbagDaoMap">
+		select * from tb_gift_bag where id = #{id}
+	</select>
+	
+	<select id="getByBagCode" parameterType="string"
+		resultMap="giftbagDaoMap">
+		select * from tb_gift_bag where bag_code = #{bagCode}
+	</select>
+	
+	<select id="getBagZoneList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			z.`code`,
+			z.`name`
+		FROM
+			tb_spirit_room_goods_rt srg
+		JOIN tb_zone z ON srg.zone_code = z.`code`
+		WHERE srg.goods_count &lt;&gt; 0 
+		and srg.room_code = #{roomCode}
+		and srg.zone_code &lt;&gt; #{zoneCode}
+		and srg.unit_type = 0
+		group by z.`code`
+	</select>
+	
+	<select id="getBagList" parameterType="hashmap" resultMap="giftbagDaoListMap">
+		select * from tb_gift_bag 
+		where
+		<choose>
+			<when test="listFlag == 'dfsList'">
+				account = #{account} and bag_status = 0 
+			</when>
+			<when test="listFlag == 'yfsList'">
+				account = #{account} and bag_status = 1
+			</when>
+			<when test="listFlag == 'dqsList'">
+				to_account = #{account} and end_date &gt; now() and bag_status = 1 and sign_status = 0
+			</when>
+			<otherwise>
+				to_account = #{account} and bag_status = 1 and sign_status = 1
+			</otherwise>
+		</choose>
+		order by create_date desc
+		limit ${(page-1)*pagesize},${pagesize}
+	</select>
+	
+	<select id="getBagRows" parameterType="hashmap" resultType="long">
+		select count(id) from tb_gift_bag 
+		where
+		<choose>
+			<when test="listFlag == 'dfsList'">
+				account = #{account} and bag_status = 0 
+			</when>
+			<when test="listFlag == 'yfsList'">
+				account = #{account} and bag_status = 1
+			</when>
+			<when test="listFlag == 'dqsList'">
+				to_account = #{account} and end_date &gt; now() and bag_status = 1 and sign_status = 0
+			</when>
+			<otherwise>
+				to_account = #{account} and bag_status = 1 and sign_status = 1
+			</otherwise>
+		</choose>
+	</select>
+	
+	
+	<select id="getBagPriceByBagCode" parameterType="string" resultType="double">
+		
+		select SUM(a.single_price) from (
+		SELECT
+		CASE
+		WHEN gp.is_activity = 0 THEN
+			gp.member_price*gbg.goods_count
+		ELSE
+			gp.activity_price*gbg.goods_count END as single_price
+		FROM
+			tb_gift_bag_goods_rt gbg join tb_goods_price gp ON gbg.goods_price_id = gp.id
+		WHERE
+			bag_code = #{bagCode}) a
+	</select>
+	
+	
+	
+
+
+	<select id="getRowsByDataType" parameterType="hashmap"
+		resultType="long">
+		select count(id) from tb_gift_bag 
+		where data_type = #{dataType}
+		<if test="data1 != null">
+			and data_1 = #{data1}
+		</if>
+		<if test="data2 != null">
+			and data_2 = #{data2}
+		</if>
+		<if test="data3 != null">
+			and data_3 = #{data3}
+		</if>
+		<if test="data4 != null">
+			and data_4 = #{data4}
+		</if>
+		<if test="data5 != null">
+			and data_5 = #{data5}
+		</if>
+	</select>
+	
+	
+	<select id="getUnValidList" parameterType="hashmap" resultMap="giftbagDaoMap">
+		select * from tb_gift_bag 
+		where
+		end_date &lt; now() 
+		and bag_status = 1 
+		and sign_status = 0
+		order by create_date
+		limit ${(page-1)*pagesize},${pagesize}
+	</select>
+	
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.ICommentPicDaoW">
+
+	<resultMap type="com.h2y.os.entity.CommentPic" id="commentpicDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="fileName" column="file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="diskFileName" column="disk_file_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="rootPath" column="root_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="relativePath" column="relative_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="fileSize" column="file_size" javaType="long" jdbcType="BIGINT" />
+		<result property="fileSuffix" column="file_suffix" javaType="string" jdbcType="VARCHAR" />
+		<result property="ifDelete" column="if_delete" javaType="int" jdbcType="INTEGER" />
+		<result property="fileType" column="file_type" javaType="int" jdbcType="INTEGER" />
+		<result property="dataId" column="data_id" javaType="string" jdbcType="VARCHAR" />
+		<result property="dataType" column="data_type" javaType="int" jdbcType="INTEGER" />
+		<result property="dataVersion" column="data_version" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="ord" column="ord" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	<insert id="add" parameterType="com.h2y.os.entity.CommentPic">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_comment_pic 
+		</selectKey>  
+		insert into tb_comment_pic
+		(
+		file_name,
+		disk_file_name,
+		root_path,
+		relative_path,
+		file_size,
+		file_suffix,
+		if_delete,
+		file_type,
+		data_id,
+		data_type,
+		data_version,
+		create_date,
+		ord
+		)
+		values (
+		#{fileName,jdbcType=VARCHAR},
+		#{diskFileName,jdbcType=VARCHAR},
+		#{rootPath,jdbcType=VARCHAR},
+		#{relativePath,jdbcType=VARCHAR},
+		#{fileSize,jdbcType=BIGINT},
+		#{fileSuffix,jdbcType=VARCHAR},
+		#{ifDelete,jdbcType=INTEGER},
+		#{fileType,jdbcType=INTEGER},
+		#{dataId,jdbcType=VARCHAR},
+		#{dataType,jdbcType=INTEGER},
+		#{dataVersion,jdbcType=INTEGER},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{ord,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.h2y.os.entity.CommentPic">
+		update tb_comment_pic
+		set
+		file_name = #{fileName,jdbcType=VARCHAR},
+		disk_file_name = #{diskFileName,jdbcType=VARCHAR},
+		root_path = #{rootPath,jdbcType=VARCHAR},
+		relative_path = #{relativePath,jdbcType=VARCHAR},
+		file_size = #{fileSize,jdbcType=BIGINT},
+		file_suffix = #{fileSuffix,jdbcType=VARCHAR},
+		if_delete = #{ifDelete,jdbcType=INTEGER},
+		file_type = #{fileType,jdbcType=INTEGER},
+		data_id = #{dataId,jdbcType=VARCHAR},
+		data_type = #{dataType,jdbcType=INTEGER},
+		data_version = #{dataVersion,jdbcType=INTEGER},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		ord = #{ord,jdbcType=INTEGER}
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="com.h2y.os.entity.CommentPic">
+		delete from
+		tb_comment_pic
+		where
+		id = #{id} 
+	</delete>
+
+	<delete id="deleteById" parameterType="long">
+		delete from
+		tb_comment_pic
+		where
+		id = #{id} 
+	</delete>
+	
+</mapper>

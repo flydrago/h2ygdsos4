@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.ISpiritRoomGoodsRtHisDaoW">
+
+	<resultMap type="com.h2y.os.entity.SpiritRoomGoodsRtHis" id="spiritroomgoodsrthisDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="realName" column="real_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagCode" column="bag_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="toAccount" column="to_account" javaType="string" jdbcType="VARCHAR" />
+		<result property="toRealName" column="to_real_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitType" column="unit_type" javaType="int" jdbcType="INTEGER" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNickName" column="goods_nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsPriceId" column="goods_price_id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsPriceVersion" column="goods_price_version" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsId" column="goods_id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsCount" column="goods_count" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsAmount" column="goods_amount" javaType="double" jdbcType="DOUBLE" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="dataType" column="data_type" javaType="int" jdbcType="INTEGER" />
+		<result property="dataStatus" column="data_status" javaType="int" jdbcType="INTEGER" />
+		<result property="data1" column="data_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="data2" column="data_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="data3" column="data_3" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="data4" column="data_4" javaType="int" jdbcType="INTEGER" />
+		<result property="data5" column="data_5" javaType="double" jdbcType="DOUBLE" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	<insert id="add" parameterType="com.h2y.os.entity.SpiritRoomGoodsRtHis">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_spirit_room_goods_rt_his 
+		</selectKey>  
+		insert into tb_spirit_room_goods_rt_his
+		(
+		account,
+		real_name,
+		bag_code,
+		to_account,
+		to_real_name,
+		unit_id,
+		unit_type,
+		zone_code,
+		goods_nick_name,
+		goods_price_id,
+		goods_price_version,
+		goods_id,
+		goods_count,
+		goods_amount,
+		create_date,
+		data_type,
+		data_status,
+		data_1,
+		data_2,
+		data_3,
+		data_4,
+		data_5,
+		memo
+		)
+		values (
+		#{account,jdbcType=VARCHAR},
+		#{realName,jdbcType=VARCHAR},
+		#{bagCode,jdbcType=VARCHAR},
+		#{toAccount,jdbcType=VARCHAR},
+		#{toRealName,jdbcType=VARCHAR},
+		#{unitId,jdbcType=BIGINT},
+		#{unitType,jdbcType=INTEGER},
+		#{zoneCode,jdbcType=VARCHAR},
+		#{goodsNickName,jdbcType=VARCHAR},
+		#{goodsPriceId,jdbcType=BIGINT},
+		#{goodsPriceVersion,jdbcType=INTEGER},
+		#{goodsId,jdbcType=BIGINT},
+		#{goodsCount,jdbcType=INTEGER},
+		#{goodsAmount,jdbcType=DOUBLE},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{dataType,jdbcType=INTEGER},
+		#{dataStatus,jdbcType=INTEGER},
+		#{data1,jdbcType=VARCHAR},
+		#{data2,jdbcType=VARCHAR},
+		#{data3,jdbcType=TIMESTAMP},
+		#{data4,jdbcType=INTEGER},
+		#{data5,jdbcType=DOUBLE},
+		#{memo,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.h2y.os.entity.SpiritRoomGoodsRtHis">
+		update tb_spirit_room_goods_rt_his
+		set
+		account = #{account,jdbcType=VARCHAR},
+		real_name = #{realName,jdbcType=VARCHAR},
+		bag_code = #{bagCode,jdbcType=VARCHAR},
+		to_account = #{toAccount,jdbcType=VARCHAR},
+		to_real_name = #{toRealName,jdbcType=VARCHAR},
+		unit_id = #{unitId,jdbcType=BIGINT},
+		unit_type = #{unitType,jdbcType=INTEGER},
+		zone_code = #{zoneCode,jdbcType=VARCHAR},
+		goods_nick_name = #{goodsNickName,jdbcType=VARCHAR},
+		goods_price_id = #{goodsPriceId,jdbcType=BIGINT},
+		goods_price_version = #{goodsPriceVersion,jdbcType=INTEGER},
+		goods_id = #{goodsId,jdbcType=BIGINT},
+		goods_count = #{goodsCount,jdbcType=INTEGER},
+		goods_amount = #{goodsAmount,jdbcType=DOUBLE},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		data_type = #{dataType,jdbcType=INTEGER},
+		data_status = #{dataStatus,jdbcType=INTEGER},
+		data_1 = #{data1,jdbcType=VARCHAR},
+		data_2 = #{data2,jdbcType=VARCHAR},
+		data_3 = #{data3,jdbcType=TIMESTAMP},
+		data_4 = #{data4,jdbcType=INTEGER},
+		data_5 = #{data5,jdbcType=DOUBLE},
+		memo = #{memo,jdbcType=VARCHAR}
+		where id = #{id}
+	</update>
+
+	
+	
+	<insert id="addBatch" parameterType="com.h2y.os.entity.GiftBagGoodsRt">
+		insert into tb_spirit_room_goods_rt_his
+		(
+		account,
+		real_name,
+		bag_code,
+		to_account,
+		to_real_name,
+		unit_id,
+		unit_type,
+		zone_code,
+		goods_nick_name,
+		goods_price_id,
+		goods_price_version,
+		goods_id,
+		goods_count,
+		goods_amount,
+		create_date,
+		data_type,
+		data_status,
+		data_1,
+		data_2,
+		data_3,
+		data_4,
+		data_5,
+		memo
+		)
+		values
+		<foreach collection="list" item="item" separator=",">
+            (
+			#{item.account,jdbcType=VARCHAR},
+			#{item.realName,jdbcType=VARCHAR},
+			#{item.bagCode,jdbcType=VARCHAR},
+			#{item.toAccount,jdbcType=VARCHAR},
+			#{item.toRealName,jdbcType=VARCHAR},
+			#{item.unitId,jdbcType=BIGINT},
+			#{item.unitType,jdbcType=INTEGER},
+			#{item.zoneCode,jdbcType=VARCHAR},
+			#{item.goodsNickName,jdbcType=VARCHAR},
+			#{item.goodsPriceId,jdbcType=BIGINT},
+			#{item.goodsPriceVersion,jdbcType=INTEGER},
+			#{item.goodsId,jdbcType=BIGINT},
+			#{item.goodsCount,jdbcType=INTEGER},
+			#{item.goodsAmount,jdbcType=DOUBLE},
+			#{item.createDate,jdbcType=TIMESTAMP},
+			#{item.dataType,jdbcType=INTEGER},
+			#{item.dataStatus,jdbcType=INTEGER},
+			#{item.data1,jdbcType=VARCHAR},
+			#{item.data2,jdbcType=VARCHAR},
+			#{item.data3,jdbcType=TIMESTAMP},
+			#{item.data4,jdbcType=INTEGER},
+			#{item.data5,jdbcType=DOUBLE},
+			#{item.memo,jdbcType=VARCHAR}
+			)
+        </foreach>
+	</insert>
+	
+	
+
+</mapper>

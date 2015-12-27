@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.IGiftBagDaoW">
+
+	<resultMap type="com.h2y.os.entity.GiftBag" id="giftbagDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagCode" column="bag_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsCount" column="goods_count" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsAmount" column="goods_amount" javaType="double" jdbcType="DOUBLE" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="signCode" column="sign_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="securityCode" column="security_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagStatus" column="bag_status" javaType="int" jdbcType="INTEGER" />
+		<result property="signStatus" column="sign_status" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="signDate" column="sign_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="endDate" column="end_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="toAccount" column="to_account" javaType="string" jdbcType="VARCHAR" />
+		<result property="toMobile" column="to_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="toUserName" column="to_user_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="content" column="content" javaType="string" jdbcType="VARCHAR" />
+		<result property="dataType" column="data_type" javaType="int" jdbcType="INTEGER" />
+		<result property="data1" column="data_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="data2" column="data_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="data3" column="data_3" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="data4" column="data_4" javaType="int" jdbcType="INTEGER" />
+		<result property="data5" column="data_5" javaType="double" jdbcType="DOUBLE" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<resultMap type="java.util.Map" id="giftbagDaoListMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagCode" column="bag_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsCount" column="goods_count" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsAmount" column="goods_amount" javaType="double" jdbcType="DOUBLE" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="signCode" column="sign_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="securityCode" column="security_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="bagStatus" column="bag_status" javaType="int" jdbcType="INTEGER" />
+		<result property="signStatus" column="sign_status" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="signDate" column="sign_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="endDate" column="end_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="toAccount" column="to_account" javaType="string" jdbcType="VARCHAR" />
+		<result property="toMobile" column="to_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="toUserName" column="to_user_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="content" column="content" javaType="string" jdbcType="VARCHAR" />
+		<result property="dataType" column="data_type" javaType="int" jdbcType="INTEGER" />
+		<result property="data1" column="data_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="data2" column="data_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="data3" column="data_3" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="data4" column="data_4" javaType="int" jdbcType="INTEGER" />
+		<result property="data5" column="data_5" javaType="double" jdbcType="DOUBLE" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<insert id="add" parameterType="com.h2y.os.entity.GiftBag">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_gift_bag 
+		</selectKey>  
+		insert into tb_gift_bag
+		(
+		zone_code,
+		bag_code,
+		goods_count,
+		goods_amount,
+		account,
+		sign_code,
+		security_code,
+		bag_status,
+		sign_status,
+		create_date,
+		update_date,
+		sign_date,
+		end_date,
+		to_account,
+		to_mobile,
+		to_user_name,
+		content,
+		data_type,
+		data_1,
+		data_2,
+		data_3,
+		data_4,
+		data_5,
+		memo
+		)
+		values (
+		#{zoneCode,jdbcType=VARCHAR},
+		#{bagCode,jdbcType=VARCHAR},
+		#{goodsCount,jdbcType=INTEGER},
+		#{goodsAmount,jdbcType=DOUBLE},
+		#{account,jdbcType=VARCHAR},
+		#{signCode,jdbcType=VARCHAR},
+		#{securityCode,jdbcType=VARCHAR},
+		#{bagStatus,jdbcType=INTEGER},
+		#{signStatus,jdbcType=INTEGER},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP},
+		#{signDate,jdbcType=TIMESTAMP},
+		#{endDate,jdbcType=TIMESTAMP},
+		#{toAccount,jdbcType=VARCHAR},
+		#{toMobile,jdbcType=VARCHAR},
+		#{toUserName,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{dataType,jdbcType=INTEGER},
+		#{data1,jdbcType=VARCHAR},
+		#{data2,jdbcType=VARCHAR},
+		#{data3,jdbcType=TIMESTAMP},
+		#{data4,jdbcType=INTEGER},
+		#{data5,jdbcType=DOUBLE},
+		#{memo,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.h2y.os.entity.GiftBag">
+		update tb_gift_bag
+		set
+		zone_code = #{zoneCode,jdbcType=VARCHAR},
+		bag_code = #{bagCode,jdbcType=VARCHAR},
+		goods_count = #{goodsCount,jdbcType=INTEGER},
+		goods_amount = #{goodsAmount,jdbcType=DOUBLE},
+		account = #{account,jdbcType=VARCHAR},
+		sign_code = #{signCode,jdbcType=VARCHAR},
+		security_code = #{securityCode,jdbcType=VARCHAR},
+		bag_status = #{bagStatus,jdbcType=INTEGER},
+		sign_status = #{signStatus,jdbcType=INTEGER},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date = #{updateDate,jdbcType=TIMESTAMP},
+		sign_date = #{signDate,jdbcType=TIMESTAMP},
+		end_date = #{endDate,jdbcType=TIMESTAMP},
+		to_account = #{toAccount,jdbcType=VARCHAR},
+		to_mobile = #{toMobile,jdbcType=VARCHAR},
+		to_user_name = #{toUserName,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		data_type = #{dataType,jdbcType=INTEGER},
+		data_1 = #{data1,jdbcType=VARCHAR},
+		data_2 = #{data2,jdbcType=VARCHAR},
+		data_3 = #{data3,jdbcType=TIMESTAMP},
+		data_4 = #{data4,jdbcType=INTEGER},
+		data_5 = #{data5,jdbcType=DOUBLE},
+		memo = #{memo,jdbcType=VARCHAR}
+		where id = #{id}
+	</update>
+
+	
+	
+	
+	<insert id="addBatch" parameterType="com.h2y.os.entity.GiftBag">
+		insert into tb_gift_bag
+		(
+		zone_code,
+		bag_code,
+		goods_count,
+		goods_amount,
+		account,
+		sign_code,
+		security_code,
+		bag_status,
+		sign_status,
+		create_date,
+		update_date,
+		sign_date,
+		end_date,
+		to_account,
+		to_mobile,
+		to_user_name,
+		content,
+		data_type,
+		data_1,
+		data_2,
+		data_3,
+		data_4,
+		data_5,
+		memo
+		)
+		values 
+		<foreach collection="list" item="item" separator=",">
+           (
+			#{item.zoneCode,jdbcType=VARCHAR},
+			#{item.bagCode,jdbcType=VARCHAR},
+			#{item.goodsCount,jdbcType=INTEGER},
+			#{item.goodsAmount,jdbcType=DOUBLE},
+			#{item.account,jdbcType=VARCHAR},
+			#{item.signCode,jdbcType=VARCHAR},
+			#{item.securityCode,jdbcType=VARCHAR},
+			#{item.bagStatus,jdbcType=INTEGER},
+			#{item.signStatus,jdbcType=INTEGER},
+			#{item.createDate,jdbcType=TIMESTAMP},
+			#{item.updateDate,jdbcType=TIMESTAMP},
+			#{item.signDate,jdbcType=TIMESTAMP},
+			#{item.endDate,jdbcType=TIMESTAMP},
+			#{item.toAccount,jdbcType=VARCHAR},
+			#{item.toMobile,jdbcType=VARCHAR},
+			#{item.toUserName,jdbcType=VARCHAR},
+			#{item.content,jdbcType=VARCHAR},
+			#{item.dataType,jdbcType=INTEGER},
+			#{item.data1,jdbcType=VARCHAR},
+			#{item.data2,jdbcType=VARCHAR},
+			#{item.data3,jdbcType=TIMESTAMP},
+			#{item.data4,jdbcType=INTEGER},
+			#{item.data5,jdbcType=DOUBLE},
+			#{item.memo,jdbcType=VARCHAR}
+			)
+        </foreach>
+	</insert>
+
+
+	
+	
+</mapper>
